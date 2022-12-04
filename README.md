@@ -1,7 +1,7 @@
 # 2022-1 ComputerGraphics   
    
    
-> ### 2022-1 컴퓨터그래픽스: 기말 텀프로젝트 "Move Move!"   
+> ### 2022-1 컴퓨터그래픽스: 기말 프로젝트 "Move Move!"   
    
    
 #### (1) 개발환경 : Visual Studoio Code, html, javaScript

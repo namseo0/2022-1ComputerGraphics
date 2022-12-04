@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Final_Project 20195153 남서영</title>
+        <style>
+            h1{
+                color : rgb(88, 108, 201);
+                text-shadow: 2px 2px 0px #000000;
+            }
+            span {
+                color : rgb(69, 79, 125);
+            }
+        </style>
+        <script id="vertex-shader" type="x-shader/x-vertex">
+            attribute vec4 vPosition;
+            attribute vec4 vColor;
+            varying vec4 fColor;
+
+            uniform mat4 modelMatrix, viewMatrix, projectionMatrix;
+            
+            void main() {
+                gl_Position = projectionMatrix * viewMatrix * modelMatrix * vPosition;
+                fColor = vColor;
+            }
+        </script>
+
+        <script id="fragment-shader" type="x-shader/x-fragment">
+            precision mediump float;
+            varying vec4 fColor;
+
+            uniform vec3 eyePos;
+            
+            void main() {
+                gl_FragColor = fColor;
+            }
+        </script>
+
+        <script id="phongVS" type="x-shader/x-vertex">
+            attribute vec4 vPosition;
+            attribute vec4 vNormal;
+    
+            uniform mat4 modelMatrix, viewMatrix, projectionMatrix;
+            
+            varying vec3  fWorldPos;
+    
+            void main() {
+                gl_Position = projectionMatrix * viewMatrix * modelMatrix * vPosition;
+                
+                //fNormal = normalize(mat3(modelMatrix) * vNormal.xyz);
+                fWorldPos = (modelMatrix * vPosition).xyz;
+            }
+            </script>
+    
+        
+        <script type="text/javascript" src="../Common/webgl-utils.js"></script>
+        <script type="text/javascript" src="../Common/initShaders.js"></script>
+        <script type="text/javascript" src="../Common/MV.js"></script>
+        <script type="text/javascript" src="../trackball.js"></script>
+        <script type="text/javascript" src="Final_Project.js"></script>
+        
+    </head>
+    <body>
+        <h1>Move! Move!</h1>
+        <span id="time">Time : 0</span><br>
+        <span id="score">Score : 0</span><br>
+        <canvas id="gl-canvas" width="720" height="480">
+            Oops... your browser doesn't support the HTML5 canvas element!
+        </canvas>
+        <div style="width:720px; text-align:center;">
+            <button id="up">▲</button><br>
+            <button id="left">◀</button>           
+            <button id="down">▼</button> 
+            <button id="right">▶</button>
+        </div>
+
+    </body>
+</html>
